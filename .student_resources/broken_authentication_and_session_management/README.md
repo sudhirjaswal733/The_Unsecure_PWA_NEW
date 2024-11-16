@@ -18,6 +18,9 @@ When these bedrock systems are "broken" they can easily be exploited by threat a
 
 1. Try to create a new user with simple or [Common passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords).
 2. Write a script or a pen-testing application to brute force [Common passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords) and [common usernames](https://github.com/danielmiessler/SecLists/tree/master/Usernames).
+3. Logout, and then try navigating to a URLs that require authentication.
+4. If the application uses cookies to manage sessions try copying the cookies to a different computer and see if the session persists.
+5. Analyse cookies for patterns that could be reverse engineered.
 
 ## How to countermeasure this vulnerability
 
