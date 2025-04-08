@@ -4,7 +4,7 @@ __Encryption__: Encryption is the process of encoding plain text or any informat
 __Hashing__: Hashing converts any amount of data into a fixed-length hash that cannot be reversed. It is widely used in cryptography. The hash allows us to validate if the input has changed even slightly; if it has, the resulting hash will be different.
 __Salting__: In cryptography, a salt is random data used as an additional input to a one-way function that hashes data, such as a password. Salts are used to keep passwords safe while they are being stored.
 
-| Same password | + | Different salt | Same Hashing Function | = | Different output |
+| Same password | + | Different salt | Same hashing function | = | Different 64 character output |
 | --- | --- | --- | --- | --- | --- |
 | "gwW$3zHw" | + | 12gT3 | SHA256 Hash | = | "12d6a36ff1ffba1d24fd3ac0d270315bef3c3de4f6765b8788301f9fd57c084e" |
 | "gwW$3zHw" | + | 97xH7 | SHA256 Hash | = | "3820b409b311a3534dcc30bbaa11f0ff5ce064fb476647ede393c8d94937ae15" |
