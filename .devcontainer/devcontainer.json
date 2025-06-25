@@ -1,6 +1,6 @@
 {
   "name": "Secure PWA Development Environment",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18"
@@ -12,16 +12,8 @@
     "cpus": 2,
     "memory": "4gb"
   },
-  "waitFor": "onCreateCommand",
-  "onCreateCommand": {
-    "pip-install": "pip install -r requirements.txt",
-    "npm-install": "npm install -g lighthouse @angular/cli http-server",
-    "setup-git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
-  },
-  "postCreateCommand": "echo 'Development environment ready!'",
-  "postAttachCommand": {
-    "server-info": "echo 'Flask server: http://localhost:5000'"
-  },
+  "postCreateCommand": "pip install -r requirements.txt && npm install -g lighthouse @angular/cli http-server && git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "postAttachCommand": "echo 'Flask server: http://localhost:5000'",
   "portsAttributes": {
     "5000": {
       "label": "Flask Application",
@@ -38,6 +30,9 @@
     }
   },
   "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    },
     "vscode": {
       "settings": {
         "files.autoSave": "onFocusChange",
