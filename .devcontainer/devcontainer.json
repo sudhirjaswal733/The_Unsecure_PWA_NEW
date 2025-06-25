@@ -1,17 +1,40 @@
 {
-  "name": "Python Flask Development Container",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "name": "Secure PWA Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
   "hostRequirements": {
-    "cpus": 4
+    "cpus": 2,
+    "memory": "4gb"
   },
   "waitFor": "onCreateCommand",
-  "updateContentCommand": "pip install -r requirements.txt",
-  "postCreateCommand": "",
-  "postAttachCommand": {},
+  "onCreateCommand": {
+    "pip-install": "pip install -r requirements.txt",
+    "npm-install": "npm install -g lighthouse @angular/cli http-server",
+    "setup-git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+  },
+  "postCreateCommand": "echo 'Development environment ready!'",
+  "postAttachCommand": {
+    "server-info": "echo 'Flask server: http://localhost:5000'"
+  },
   "portsAttributes": {
     "5000": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
+      "label": "Flask Application",
+      "onAutoForward": "openPreview",
+      "protocol": "http"
+    },
+    "3000": {
+      "label": "Development Server",
+      "onAutoForward": "silent"
+    },
+    "8080": {
+      "label": "HTTP Server",
+      "onAutoForward": "silent"
     }
   },
   "customizations": {
@@ -20,45 +43,90 @@
         "files.autoSave": "onFocusChange",
         "editor.formatOnPaste": true,
         "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true,
+          "source.fixAll": true
+        },
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter"
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          }
         },
-        "editor.fontSize": 18,
-        "terminal.integrated.defaultProfile.windows": "Git Bash",
-        "window.restoreWindows": "preserve",
-        "workbench.editorAssociations": {
-          "*.md": "vscode.markdown.preview.editor"
+        "[html]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
-      	"workbench.colorTheme": "Default Dark+",
-      	"workbench.iconTheme": "vscode-icons",
-      	"github.copilot.enable": {
-      		"python": false,
-      		"html": false,
-      		"css": false,
-      		"SQL": false
-	      },
-         "chat.agent.enabled": false
+        "[css]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.banditEnabled": true,
+        "python.testing.pytestEnabled": true,
+        "editor.fontSize": 14,
+        "editor.lineNumbers": "on",
+        "editor.rulers": [88, 120],
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "vscode-icons",
+        "security.workspace.trust.enabled": false,
+        "html.validate.scripts": true,
+        "html.validate.styles": true,
+        "css.validate": true,
+        "javascript.validate.enable": true,
+        "emmet.includeLanguages": {
+          "javascript": "javascriptreact"
+        },
+        "github.copilot.enable": {
+          "python": false,
+          "html": false,
+          "css": false,
+          "javascript": false,
+          "sql": false
+        },
+        "chat.agent.enabled": false
       },
       "extensions": [
-        "McCarter.start-git-bash",
-        "yy0931.vscode-sqlite3-editor",
-        "medo64.render-crlf",
-        "ecmel.vscode-html-css",
         "ms-python.python",
-        "esbenp.prettier-vscode",
-        "oderwat.indent-rainbow",
-        "ritwickdey.LiveServer",
-        "mathematic.vscode-pdf",
-        "GitHub.codespaces",
+        "ms-python.black-formatter",
+        "ms-python.pylint",
         "ms-python.debugpy",
         "ms-python.vscode-pylance",
-        "yahyabatulu.vscode-markdown-alert",
-        "bierner.markdown-preview-github-styles",
+        "ms-python.isort",
+        "esbenp.prettier-vscode",
+        "ecmel.vscode-html-css",
+        "bradlc.vscode-tailwindcss",
+        "ritwickdey.LiveServer",
+        "yy0931.vscode-sqlite3-editor",
         "mechatroner.rainbow-csv",
-        "ms-python.pylint"
+        "oderwat.indent-rainbow",
+        "medo64.render-crlf",
+        "bierner.markdown-preview-github-styles",
+        "yahyabatulu.vscode-markdown-alert",
+        "mathematic.vscode-pdf",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "foxundermoon.shell-format",
+        "timonwong.shellcheck",
+        "ms-vscode-remote.remote-containers",
+        "GitHub.codespaces",
+        "ms-vscode.vscode-typescript-next",
+        "christian-kohler.path-intellisense",
+        "formulahendry.auto-rename-tag",
+        "PKief.material-icon-theme"
       ]
     }
   },
-  "forwardPorts": [5000, 3000]
+  "forwardPorts": [5000, 3000, 8080],
+  "remoteUser": "vscode",
+  "shutdownAction": "stopContainer"
 }
