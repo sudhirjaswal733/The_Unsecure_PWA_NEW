@@ -13,7 +13,7 @@
     "memory": "4gb"
   },
   "postCreateCommand": "pip install -r requirements.txt && npm install -g lighthouse @angular/cli http-server && git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "postAttachCommand": "echo 'python main.py'",
+  "postAttachCommand": "python main.py",
   "portsAttributes": {
     "5000": {
       "label": "Flask Application",
@@ -51,7 +51,9 @@
           "css": false,
           "SQL": false
         },
-        "chat.agent.enabled": false
+        "chat.agent.enabled": false,
+        "workbench.editor.enablePreview": true,
+        "workbench.editor.enablePreviewFromQuickOpen": true
       },
       "extensions": [
         "bierner.markdown-mermaid",
