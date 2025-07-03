@@ -13,7 +13,7 @@
     "memory": "4gb"
   },
   "postCreateCommand": "pip install -r requirements.txt && npm install -g lighthouse @angular/cli http-server && git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "postAttachCommand": "echo 'Flask server: http://localhost:5000'",
+  "postAttachCommand": "echo 'python main.py'",
   "portsAttributes": {
     "5000": {
       "label": "Flask Application",
@@ -30,9 +30,6 @@
     }
   },
   "customizations": {
-    "codespaces": {
-      "openFiles": ["README.md"]
-    },
     "vscode": {
       "settings": {
         "files.autoSave": "onFocusChange",
@@ -77,6 +74,9 @@
         "yahyabatulu.vscode-markdown-alert",
         "yy0931.vscode-sqlite3-editor"
       ]
+    },
+    "codespaces": {
+      "openFiles": ["README.md"]
     }
   },
   "forwardPorts": [5000, 3000, 8080],
