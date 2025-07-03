@@ -7,7 +7,7 @@
     "memory": "4gb"
   },
   "postCreateCommand": "pip install -r requirements.txt",
-  "postAttachCommand": "python main.py",
+  "postAttachCommand": "code README.md && python main.py",
   "portsAttributes": {
     "5000": {
       "label": "Flask Application",
@@ -71,9 +71,6 @@
         "yahyabatulu.vscode-markdown-alert",
         "yy0931.vscode-sqlite3-editor"
       ]
-    },
-    "codespaces": {
-      "openFiles": ["README.md"]
     }
   },
   "forwardPorts": [5000, 3000, 8080],
