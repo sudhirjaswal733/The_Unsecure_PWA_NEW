@@ -1,5 +1,5 @@
 {
-  "name": "Secure PWA Development Environment",
+  "name": "UnSecure PWA Development Environment",
   "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
   "features": {},
   "hostRequirements": {
@@ -16,10 +16,6 @@
     },
     "3000": {
       "label": "Development Server",
-      "onAutoForward": "silent"
-    },
-    "8080": {
-      "label": "HTTP Server",
       "onAutoForward": "silent"
     }
   },
@@ -73,7 +69,5 @@
       ]
     }
   },
-  "forwardPorts": [5000, 3000, 8080],
-  "remoteUser": "vscode",
-  "shutdownAction": "stopContainer"
+  "forwardPorts": [5000, 3000]
 }
