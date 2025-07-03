@@ -38,86 +38,44 @@
         "files.autoSave": "onFocusChange",
         "editor.formatOnPaste": true,
         "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": true,
-          "source.fixAll": true
+        "editor.fontSize": 18,
+        "extensions.ignoreRecommendations": true,
+        "unwantedRecommendations": ["ms-python.vscode-python-envs"],
+        "terminal.integrated.defaultProfile.windows": "Git Bash",
+        "window.restoreWindows": "preserve",
+        "workbench.editorAssociations": {
+          "*.md": "vscode.markdown.preview.editor"
         },
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter",
-          "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-          }
-        },
-        "[html]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[css]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[javascript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[json]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.linting.enabled": true,
-        "python.linting.pylintEnabled": true,
-        "python.linting.banditEnabled": true,
-        "python.testing.pytestEnabled": true,
-        "editor.fontSize": 14,
-        "editor.lineNumbers": "on",
-        "editor.rulers": [88, 120],
-        "terminal.integrated.defaultProfile.linux": "bash",
         "workbench.colorTheme": "Default Dark+",
         "workbench.iconTheme": "vscode-icons",
-        "security.workspace.trust.enabled": false,
-        "html.validate.scripts": true,
-        "html.validate.styles": true,
-        "css.validate": true,
-        "javascript.validate.enable": true,
-        "emmet.includeLanguages": {
-          "javascript": "javascriptreact"
-        },
         "github.copilot.enable": {
           "python": false,
           "html": false,
           "css": false,
-          "javascript": false,
-          "sql": false
+          "SQL": false
         },
         "chat.agent.enabled": false
       },
       "extensions": [
-        "ms-python.python",
-        "ms-python.black-formatter",
-        "ms-python.pylint",
-        "ms-python.debugpy",
-        "ms-python.vscode-pylance",
-        "ms-python.isort",
-        "esbenp.prettier-vscode",
-        "ecmel.vscode-html-css",
-        "bradlc.vscode-tailwindcss",
-        "ritwickdey.LiveServer",
-        "yy0931.vscode-sqlite3-editor",
-        "mechatroner.rainbow-csv",
-        "oderwat.indent-rainbow",
-        "medo64.render-crlf",
+        "bierner.markdown-mermaid",
         "bierner.markdown-preview-github-styles",
-        "yahyabatulu.vscode-markdown-alert",
-        "mathematic.vscode-pdf",
-        "streetsidesoftware.code-spell-checker",
-        "ms-vscode.vscode-json",
-        "redhat.vscode-yaml",
-        "foxundermoon.shell-format",
-        "timonwong.shellcheck",
-        "ms-vscode-remote.remote-containers",
+        "ecmel.vscode-html-css",
+        "esbenp.prettier-vscode",
         "GitHub.codespaces",
-        "ms-vscode.vscode-typescript-next",
-        "christian-kohler.path-intellisense",
-        "formulahendry.auto-rename-tag",
-        "PKief.material-icon-theme"
+        "mathematic.vscode-pdf",
+        "McCarter.start-git-bash",
+        "mechatroner.rainbow-csv",
+        "ms-python.black-formatter",
+        "ms-python.debugpy",
+        "ms-python.pylint",
+        "ms-python.python",
+        "oderwat.indent-rainbow",
+        "yahyabatulu.vscode-markdown-alert",
+        "oderwat.indent-rainbow",
+        "streetsidesoftware.code-spell-checker",
+        "tal7aouy.icons",
+        "yahyabatulu.vscode-markdown-alert",
+        "yy0931.vscode-sqlite3-editor"
       ]
     }
   },
