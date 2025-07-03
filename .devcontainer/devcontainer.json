@@ -1,18 +1,12 @@
 {
   "name": "Secure PWA Development Environment",
   "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
-    },
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
+  "features": {},
   "hostRequirements": {
     "cpus": 2,
     "memory": "4gb"
   },
-  "postCreateCommand": "pip install -r requirements.txt && npm install -g lighthouse @angular/cli http-server && git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "postCreateCommand": "pip install -r requirements.txt",
   "postAttachCommand": "python main.py",
   "portsAttributes": {
     "5000": {
@@ -43,6 +37,7 @@
         "workbench.editorAssociations": {
           "*.md": "vscode.markdown.preview.editor"
         },
+        "workbench.editor.defaultOpenEditor": "preview",
         "workbench.colorTheme": "Default Dark+",
         "workbench.iconTheme": "vscode-icons",
         "github.copilot.enable": {
