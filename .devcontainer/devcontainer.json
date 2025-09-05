@@ -13,7 +13,9 @@
       "label": "Flask Application",
       "onAutoForward": "openPreview",
       "protocol": "http",
-      "visibility": "public"
+      "visibility": "public",
+      "requireLocalPort": false,
+      "elevateIfNeeded": true
     },
     "3000": {
       "label": "Development Server",
