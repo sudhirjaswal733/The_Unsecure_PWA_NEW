@@ -46,7 +46,10 @@ def home():
     if request.method == "GET" and request.args.get("url"):
         url = request.args.get("url", "")
         return redirect(url, code=302)
-    if request.method == "POST":
+    elif request.method == "GET":
+        msg = request.args.get("msg", "")
+        return render_template("/index.html", msg=msg)
+    elif request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
         isLoggedIn = dbHandler.retrieveUsers(username, password)
