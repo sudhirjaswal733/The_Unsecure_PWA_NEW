@@ -12,7 +12,8 @@
     "5000": {
       "label": "Flask Application",
       "onAutoForward": "openPreview",
-      "protocol": "http"
+      "protocol": "http",
+      "visibility": "public"
     },
     "3000": {
       "label": "Development Server",
