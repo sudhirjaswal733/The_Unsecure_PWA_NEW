@@ -43,9 +43,11 @@ def signup():
 @app.route("/index.html", methods=["POST", "GET", "PUT", "PATCH", "DELETE"])
 @app.route("/", methods=["POST", "GET"])
 def home():
+    # Simple Dynamic menu
     if request.method == "GET" and request.args.get("url"):
         url = request.args.get("url", "")
         return redirect(url, code=302)
+    # Pass message to front end
     elif request.method == "GET":
         msg = request.args.get("msg", "")
         return render_template("/index.html", msg=msg)
