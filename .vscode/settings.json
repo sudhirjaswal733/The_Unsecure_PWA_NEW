@@ -22,6 +22,7 @@
     "SQL": false
   },
   "chat.agent.enabled": false,
+  "github.copilot.chat.participant.alwaysInclude": ["copilot-instructions.md"],
   "remote.portsAttributes": {
     "5000": {
       "label": "Flask Application",
