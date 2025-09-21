@@ -44,7 +44,10 @@
           "css": false,
           "SQL": false
         },
-        "chat.agent.enabled": false,
+        "chat.agent.enabled": true,
+        "github.copilot.chat.participant.alwaysInclude": [
+          "copilot-instructions.md"
+        ],
         "workbench.editor.enablePreview": true,
         "workbench.editor.enablePreviewFromQuickOpen": true
       },
@@ -65,7 +68,8 @@
         "streetsidesoftware.code-spell-checker",
         "tal7aouy.icons",
         "saeris.markdown-github-alerts",
-        "yy0931.vscode-sqlite3-editor"
+        "yy0931.vscode-sqlite3-editor",
+        "github.copilot"
       ]
     }
   },
