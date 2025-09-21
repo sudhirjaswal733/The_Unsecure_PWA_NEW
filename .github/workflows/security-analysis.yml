@@ -108,6 +108,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LANGUAGE: ${{ matrix.language }}
         run: |
+          # Create required labels if they don't exist
+          gh label create "security" --description "Security-related issues" --color "d73a4a" || true
+          gh label create "codeql" --description "Issues found by CodeQL analysis" --color "f1c40f" || true
+          gh label create "${{ matrix.language }}" --description "${{ matrix.language }} language issues" --color "3572A5" || true
+          gh label create "automated" --description "Automatically generated issues" --color "0052cc" || true
+
           # Install jq if not available
           if ! command -v jq &> /dev/null; then
             sudo apt-get update && sudo apt-get install -y jq
@@ -244,6 +250,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Create required labels if they don't exist
+          gh label create "security" --description "Security-related issues" --color "d73a4a" || true
+          gh label create "bandit" --description "Issues found by Bandit security linter" --color "f9c23c" || true
+          gh label create "python" --description "Python-related issues" --color "3572A5" || true
+          gh label create "automated" --description "Automatically generated issues" --color "0052cc" || true
+
           if [ ! -f bandit-report.json ]; then
             echo "No Bandit report generated"
             exit 0
@@ -341,6 +353,9 @@ jobs:
       issues: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Generate Security Summary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -351,22 +366,27 @@ jobs:
           echo "**Branch:** ${{ github.ref_name }}"
           echo ""
 
-          # Count security issues
-          SECURITY_ISSUES=$(gh issue list --label "security" --state open --json number | jq '. | length')
-          CODEQL_ISSUES=$(gh issue list --label "security,codeql" --state open --json number | jq '. | length')
-          BANDIT_ISSUES=$(gh issue list --label "security,bandit" --state open --json number | jq '. | length')
+          # Count security issues with proper error handling
+          SECURITY_ISSUES=$(gh issue list --label "security" --state open --json number 2>/dev/null | jq '. | length' 2>/dev/null || echo "0")
+          CODEQL_ISSUES=$(gh issue list --label "security,codeql" --state open --json number 2>/dev/null | jq '. | length' 2>/dev/null || echo "0")
+          BANDIT_ISSUES=$(gh issue list --label "security,bandit" --state open --json number 2>/dev/null | jq '. | length' 2>/dev/null || echo "0")
+
+          # Ensure variables are numbers
+          SECURITY_ISSUES=${SECURITY_ISSUES:-0}
+          CODEQL_ISSUES=${CODEQL_ISSUES:-0}
+          BANDIT_ISSUES=${BANDIT_ISSUES:-0}
 
           echo "**Open Security Issues:**"
           echo "- Total: $SECURITY_ISSUES"
           echo "- CodeQL: $CODEQL_ISSUES"
           echo "- Bandit: $BANDIT_ISSUES"
 
-          if [ "$SECURITY_ISSUES" -gt 0 ]; then
+          if [ "$SECURITY_ISSUES" -gt 0 ] 2>/dev/null; then
             echo ""
             echo "⚠️ **Action Required:** Please review and address the security issues found."
             echo ""
             echo "**Recent Security Issues:**"
-            gh issue list --label "security" --state open --limit 10 --json number,title,url | jq -r '.[] | "- [#\(.number)](\(.url)) \(.title)"'
+            gh issue list --label "security" --state open --limit 10 --json number,title,url 2>/dev/null | jq -r '.[] | "- [#\(.number)](\(.url)) \(.title)"' 2>/dev/null || echo "- No issues found or error retrieving issue details"
           else
             echo ""
             echo "✅ **No open security issues found!**"
